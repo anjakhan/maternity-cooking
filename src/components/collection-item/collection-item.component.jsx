@@ -1,5 +1,7 @@
 import React from 'react';
 
+import CustomButton from '../custom-button/custom-button.component';
+
 import './collection-item.styles.scss';
 
 const CollectionItem = ({ id, name, imageUrl }) => (
@@ -10,9 +12,7 @@ const CollectionItem = ({ id, name, imageUrl }) => (
                 backgroundImage: `url(${imageUrl})`
             }}
         />
-        <div className='collection-footer'>
-            <span className='name'>{name}</span>
-        </div>
+        <CustomButton>{name}</CustomButton>
     </div>
 );
 
