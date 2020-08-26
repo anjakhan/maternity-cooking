@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import CustomButton from '../custom-button/custom-button.component';
 import FavItem from '../fav-item/fav-item.component';
+import { selectFavItems } from '../../redux/favorites/fav.selectors';
 
 import './fav-dropdown.styles.scss';
 
@@ -44,8 +45,8 @@ const FavDropdown = ({ favItems }) => (
     </div>
 );
 
-const mapStateToProps = ({ fav: { favItems } }) => ({
-    favItems
+const mapStateToProps = state => ({
+    favItems: selectFavItems(state)
 });
 
 export default connect(mapStateToProps)(FavDropdown);
