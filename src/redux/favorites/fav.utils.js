@@ -9,3 +9,11 @@ export const addItemToFav = (favItems, favItemToAdd) => {
 
     return [...favItems, { ...favItemToAdd}]
 };
+
+export const deleteItemFromFav = (favItems, favItemToDelete) => {
+    const filtered = favItems.filter(function(value){ 
+        return value !== favItemToDelete;
+    });
+    
+    return filtered
+}

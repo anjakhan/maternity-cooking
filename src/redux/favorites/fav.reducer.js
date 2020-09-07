@@ -1,5 +1,5 @@
 import FavActionTypes from './fav.types';
-import { addItemToFav } from './fav.utils';
+import { addItemToFav, deleteItemFromFav } from './fav.utils';
 
 
 const INITIAL_STATE = {
@@ -19,6 +19,11 @@ const favReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 favItems: addItemToFav(state.favItems, action.payload)
             };
+        case FavActionTypes.DELETE_ITEM:
+            return {
+                ...state,
+                favItems: deleteItemFromFav(state.favItems, action.payload)
+            }
         default:
             return state;
     };
