@@ -5,6 +5,6 @@ export const toggleFavHidden = () => ({
 });
 
 export const addItem = item => ({
-    type:FavActionTypes.ADD_ITEM,
+    type: FavActionTypes.ADD_ITEM,
     payload: item
 });

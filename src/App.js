@@ -6,7 +6,8 @@ import './App.css';
 import Header from './components/header/header.component';
 import HomePage from './pages/homepage/homepage.component';
 import RecipesPage from './pages/recipes/recipes.component';
-import RecipePage from './pages/recipe/recipe.component';
+import FavPage from './pages/favpage/favpage.component';
+import CreateRecipePage from './pages/create-recipe-page/create-recipe-page.component';
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
       <Header />
       <Switch>
         <Route exact path='/' component={HomePage} />
-        <Route exact path='/recipes/cooking/test' component={RecipePage} />
         <Route path='/recipes' component={RecipesPage} />
+        <Route exact path='/favpage' component={FavPage} />
+        <Route exact path='/create-recipe' component={CreateRecipePage} />
       </Switch>
     </div>
   );

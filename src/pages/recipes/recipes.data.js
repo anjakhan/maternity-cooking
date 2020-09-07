@@ -139,35 +139,35 @@ const RECIPES_DATA = [
     items: [
       {
         id: 18,
-        title: 'BabyFood',
+        title: 'Babys Food',
         name: 'Broccoli-Chicken-Soup',
         imageUrl: 'https://mampfbar.de/wp-content/uploads/2017/03/5-beste-gemuesesorten-1150x768.jpg',
         ingredients: []
       },
       {
         id: 19,
-        title: 'BabyFood',
+        title: 'Babys Food',
         name: 'Broccoli-Chicken-Soup',
         imageUrl: 'https://images.pexels.com/photos/539451/pexels-photo-539451.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
         ingredients: []
       },
       {
         id: 20,
-        title: 'BabyFood',
+        title: 'Babys Food',
         name: 'Broccoli-Chicken-Soup',
         imageUrl: 'https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
         ingredients: []
       },
       {
         id: 21,
-        title: 'BabyFood',
+        title: 'Babys Food',
         name: 'Broccoli-Chicken-Soup',
         imageUrl: 'https://images.pexels.com/photos/1333746/pexels-photo-1333746.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
         ingredients: []
       },
       {
         id: 22,
-        title: 'BabyFood',
+        title: 'Babys Food',
         name: 'Broccoli-Chicken-Soup',
         imageUrl: 'https://mampfbar.de/wp-content/uploads/2017/03/5-beste-gemuesesorten-1150x768.jpg',
         ingredients: []
@@ -181,49 +181,49 @@ const RECIPES_DATA = [
     items: [
       {
         id: 23,
-        title: 'BLW',
+        title: 'Baby Led Weaning',
         name: 'Baked-Potatoes',
         imageUrl: 'https://www.babyartikel.de/magazin/wp-content/uploads/2015/03/baby-led-weaning-essen-1050x700.jpg',
         ingredients: []
       },
       {
         id: 24,
-        title: 'BLW',
+        title: 'Baby Led Weaning',
         name: 'Baked-Potatoes',
         imageUrl: 'https://images.pexels.com/photos/3911229/pexels-photo-3911229.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
         ingredients: []
       },
       {
         id: 25,
-        title: 'BLW',
+        title: 'Baby Led Weaning',
         name: 'Baked-Potatoes',
         imageUrl: 'https://www.babyartikel.de/magazin/wp-content/uploads/2015/03/baby-led-weaning-essen-1050x700.jpg',
         ingredients: []
       },
       {
         id: 26,
-        title: 'BLW',
+        title: 'Baby Led Weaning',
         name: 'Baked-Potatoes',
         imageUrl: 'https://www.babyartikel.de/magazin/wp-content/uploads/2015/03/baby-led-weaning-essen-1050x700.jpg',
         ingredients: []
       },
       {
         id: 27,
-        title: 'BLW',
+        title: 'Baby Led Weaning',
         name: 'Baked-Potatoes',
         imageUrl: 'https://www.babyartikel.de/magazin/wp-content/uploads/2015/03/baby-led-weaning-essen-1050x700.jpg',
         ingredients: []
       },
       {
         id: 28,
-        title: 'BLW',
+        title: 'Baby Led Weaning',
         name: 'Baked-Potatoes',
         imageUrl: 'https://www.babyartikel.de/magazin/wp-content/uploads/2015/03/baby-led-weaning-essen-1050x700.jpg',
         ingredients: []
       },
       {
         id: 29,
-        title: 'BLW',
+        title: 'Baby Led Weaning',
         name: 'Baked-Potatoes',
         imageUrl: 'https://www.babyartikel.de/magazin/wp-content/uploads/2015/03/baby-led-weaning-essen-1050x700.jpg',
         ingredients: []
@@ -232,47 +232,47 @@ const RECIPES_DATA = [
   },
   {
     id: 5,
-    title: 'Smoothies & Energy Snacks',
+    title: 'Smoothies & Snacks',
     routeName: 'smoothies',
     items: [
       {
         id: 30,
-        title: 'Smoothies',
+        title: 'Smoothies & Snacks',
         name: 'Cucumber-Avocado-Shake',
         imageUrl: 'https://www.healthyrockstar.com/wp-content/uploads/smoothiesgesund-820x547.jpg',
         ingredients: []
       },
       {
         id: 31,
-        title: 'Smoothies',
+        title: 'Smoothies & Snacks',
         name: 'Cucumber-Avocado-Shake',
         imageUrl: 'https://www.healthyrockstar.com/wp-content/uploads/smoothiesgesund-820x547.jpg',
         ingredients: []
       },
       {
         id: 32,
-        title: 'Smoothies',
+        title: 'Smoothies & Snacks',
         name: 'Cucumber-Avocado-Shake',
         imageUrl: 'https://www.healthyrockstar.com/wp-content/uploads/smoothiesgesund-820x547.jpg',
         ingredients: []
       },
       {
         id: 33,
-        title: 'Smoothies',
+        title: 'Smoothies & Snacks',
         name: 'Cucumber-Avocado-Shake',
         imageUrl: 'https://www.healthyrockstar.com/wp-content/uploads/smoothiesgesund-820x547.jpg',
         ingredients: []
       },
       {
         id: 34,
-        title: 'Smoothies',
+        title: 'Smoothies & Snacks',
         name: 'Cucumber-Avocado-Shake',
         imageUrl: 'https://www.healthyrockstar.com/wp-content/uploads/smoothiesgesund-820x547.jpg',
         ingredients: []
       },
       {
         id: 35,
-        title: 'Smoothies',
+        title: 'Smoothies & Snacks',
         name: 'Cucumber-Avocado-Shake',
         imageUrl: 'https://www.healthyrockstar.com/wp-content/uploads/smoothiesgesund-820x547.jpg',
         ingredients: []

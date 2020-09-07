@@ -1,9 +1,9 @@
 import React from 'react';
 
-import './recipe.styles.scss';
+import './single-recipes.styles.scss';
 
-const RecipePage = () => (
-    <div className='recipe-page'>
+const SingleRecipesPage = () => (
+    <div className='single-recipes-page'>
         <div
             className='background-image'
             style={{
@@ -34,4 +34,4 @@ const RecipePage = () => (
 // if text exeeds textHight then arrow click next for continuing directions text (or ingredients list)
 // keep all text within the picture and if too much text, then use right-left-arrows for more text
 
-export default RecipePage;
+export default SingleRecipesPage;

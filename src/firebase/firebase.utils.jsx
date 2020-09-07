@@ -13,6 +13,21 @@ const config = {
     measurementId: "G-E0REMV9NFC"
 };
 
+export const createRecipesDocument = ({ name, title, directions, ingredients }) => {
+    firestore.collection("recipes").add({
+        name,
+        title,
+        directions,
+        ingredients
+    })
+    .then(function(docRef) {
+        console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    });
+}
+
 firebase.initializeApp(config);
 
 // export const auth = firebase.auth()

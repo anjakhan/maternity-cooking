@@ -16,7 +16,7 @@ const MenuItem = ({ title, imageUrl, size, history, linkUrl, match, count }) => 
         />
         <div className='content'>
             <h1 className='title'>{title}</h1>
-            <span className='subtitle'>{count} 5 recipes</span>
+            <span className='subtitle'>{count} recipes</span>
         </div>
     </div>
 );

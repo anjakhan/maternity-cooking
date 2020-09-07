@@ -7,6 +7,11 @@ export const selectFavItems = createSelector(
     fav => fav.favItems
 );
 
+export const selectFavHidden = createSelector(
+    [selectFav],
+    fav => fav.hidden
+);
+
 export const selectFavItemsCount = createSelector(
     [selectFavItems],
     favItems =>

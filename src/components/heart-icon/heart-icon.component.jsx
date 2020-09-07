@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import { toggleFavHidden } from '../../redux/favorites/fav.actions';
 import { selectFavItemsCount } from '../../redux/favorites/fav.selectors';
@@ -15,8 +16,8 @@ const FavIcon = ({ toggleFavHidden, itemCount }) => (
     </div>
 );
 
-const mapStateToProps = state => ({
-    itemCount: selectFavItemsCount(state)
+const mapStateToProps = createStructuredSelector({
+    itemCount: selectFavItemsCount
 });
 
 const mapDispatchToProps = dispatch => ({

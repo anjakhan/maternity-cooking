@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import FavIcon from '../heart-icon/heart-icon.component';
 import FavDropdown from '../fav-dropdown/fav-dropdown.component';
+import { selectFavHidden } from '../../redux/favorites/fav.selectors';
 
 import { ReactComponent as Logo} from '../../assets/maternity.svg';
-import { connect } from 'react-redux';
 
 import './header.styles.scss';
 
@@ -18,8 +20,8 @@ const Header = ({ hidden }) => (
             <Link className='option' to='/recipes'>
                 Recipes
             </Link>
-            <Link className='option' to='/addRecipe'>
-                Add Recipe
+            <Link className='option' to='/create-recipe'>
+                Create Recipe
             </Link>
             <FavIcon />
         </div>
@@ -27,8 +29,8 @@ const Header = ({ hidden }) => (
     </div>
 );
 
-const mapStateToProps = ({ fav: { hidden }}) => ({
-    hidden
+const mapStateToProps = createStructuredSelector({
+    hidden: selectFavHidden
 });
 
 export default connect(mapStateToProps)(Header);
