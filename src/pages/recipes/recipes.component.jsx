@@ -1,28 +1,21 @@
 import React from 'react';
-
-import RECIPES_DATA from './recipes.data.js';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import CollectionPreview from '../../components/collection-preview/collection-preview.component';
 
-class RecipesPage extends React.Component {
-    constructor(props) {
-        super(props);
+import { selectCollections } from '../../redux/recipes/recipes.selectors';
 
-        this.state = {
-            collections: RECIPES_DATA
-        };
-    }
+const RecipesPage = ({ collections }) => (
+    <div className='recipes-page'>
+        {collections.map(({ id, ...otherCollectionProps }) => (
+            <CollectionPreview key={id} {...otherCollectionProps} />
+        ))}
+    </div>
+);
 
-    render() {
-        const {collections} = this.state;
-        return (<div className='recipes-page'>
-            {
-                collections.map(({ id, ...otherCollectionProps }) => (
-                    <CollectionPreview key={id} {...otherCollectionProps} />
-                ))
-            }
-        </div>);
-    }
-}
+const mapStateToProps = createStructuredSelector({
+    collections: selectCollections
+});
 
-export default RecipesPage;
+export default connect(mapStateToProps)(RecipesPage);

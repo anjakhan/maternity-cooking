@@ -9,16 +9,16 @@ import './fav-preview-item.styles.scss';
 const FavPreviewItem = ({ item, deleteItem }) => {
     const { name, imageUrl } = item;
     return (
-    <div className='fav-preview-item'>
-        <div
-            className='image'
-            style={{
-                backgroundImage: `url(${imageUrl})`
-            }}
-        />
-        <div onClick={() => deleteItem(item)} className='x-icon'>x</div>
-        <CustomButton>{name}</CustomButton>
-    </div>
+        <div className='fav-preview-item'>
+            <div
+                className='image'
+                style={{
+                    backgroundImage: `url(${imageUrl})`
+                }}
+            />
+            <div onClick={() => deleteItem(item)} className='x-icon'>x</div>
+            <CustomButton>{name}</CustomButton>
+        </div>
 )};
 
 const mapDispatchToProps = dispatch => ({

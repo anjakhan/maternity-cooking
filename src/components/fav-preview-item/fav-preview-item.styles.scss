@@ -1,5 +1,5 @@
 .fav-preview-item {
-  width: 250px;
+  min-width: 250px;
   display: flex;
   flex-direction: column;
   height: 200px;
@@ -35,7 +35,7 @@
   }
 
   .custom-button {
-    width: 80%;
+    width: auto;
     opacity: 0.7;
     position: absolute;
     display: none;

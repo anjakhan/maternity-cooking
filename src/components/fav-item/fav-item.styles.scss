@@ -11,13 +11,28 @@
     .item-details {
       width: 70%;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: flex-start;
-      justify-content: center;
-      padding: 10px 20px;
+      justify-content: space-between;
+      padding: 10px 15px;
   
       .name {
         font-size: 16px;
+        margin-right: 5px;
+      }
+
+      .x-icon {
+        cursor: pointer;
+        font-weight: bold;
+        background-color: orange;
+        opacity: 0.7;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 1px 4px;
+
+        &:hover {
+          opacity: 0.9;
+        }
       }
     }
   }
