@@ -1,0 +1,80 @@
+.container {
+  padding: 0 30px;
+  margin-top: 20px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  // background-color: whitesmoke;
+  // border: 2px dashed black;
+  // border-radius: 5px;
+  // box-shadow: 0px 0px 0px 5px whitesmoke, 0px 0px 2px 8px black;
+  position: relative;
+
+  .title {
+    min-width: 100%;
+    text-align: center;
+    margin-bottom: 20px;;
+  }
+
+  h3 {
+    margin-top: 0;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .ingredients {
+    font-weight: 900;
+    width: 380px;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 150px;
+  }
+
+  .image {
+    width: 300px;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    margin-right: 30px;
+    border: 2px solid #ccc;
+    box-shadow: 3px 3px 5px rgb(33, 33, 33);
+  }
+
+  .description {
+    font-weight: 900;
+    max-width: 700px;
+    margin-top: 30px;
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .heart-icon{
+    margin-left: 20px;
+    line-height: 50px;
+    width: 40px;
+    height: 40px;
+    opacity: 0.7;
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+  

@@ -13,15 +13,44 @@ const config = {
     measurementId: "G-E0REMV9NFC"
 };
 
-export const createRecipesDocument = ({ name, title, directions, ingredients }) => {
+// export const getID = () => {
+//     firestore.collection('recipes').get()
+//       .then(snapshot => {
+//         snapshot.forEach(doc => {
+//           console.log(doc.id);
+//         });
+//       })
+//       .catch(err => {
+//         console.log('Error getting documents', err);
+//       });
+// }
+
+// export const getRecipes = () => {
+//     let output = 
+//     firestore.collection("recipes").get()
+//         .then(function(querySnapshot) {
+//             querySnapshot.forEach(function(doc) {
+//                 console.log(doc.id, " => ", doc.data());
+//                 return doc.data()
+//             });
+//         });
+//     return output
+// }
+
+export const createRecipesDocument = ({ id, topic, title, directions, ingredients, linkUrl }) => {
     firestore.collection("recipes").add({
-        name,
+        id,
         title,
+        topic,
         directions,
-        ingredients
+        ingredients,
+        linkUrl
     })
     .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
+        firestore.collection('recipes').doc(`${docRef.id}`).set({
+            id: docRef.id
+        }, { merge: true });
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);

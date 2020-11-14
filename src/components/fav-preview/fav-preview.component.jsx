@@ -7,14 +7,14 @@ import { selectFavItems } from '../../redux/favorites/fav.selectors';
 
 import './fav-preview.styles.scss';
 
-const FavPreview = ({ favItems, title }) => {
+const FavPreview = ({ favItems, topic }) => {
     return (
         <div className='fav-preview'>
-            <h1 className='title'>{title}<hr /></h1>
+            <h1 className='title'>{topic}<hr /></h1>
             {favItems.length ? (
                 <div className='fav-selection'>
                     {favItems.map(favItem => (
-                        favItem.title === title
+                        favItem.topic === topic
                         ? <FavPreviewItem key={favItem.id} item={favItem} />
                         : null
                     ))}

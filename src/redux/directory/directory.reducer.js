@@ -1,28 +1,28 @@
 const INITIAL_STATE = {
     sections: [
         {
-          title: 'cooking',
+          topic: 'cooking',
           imageUrl: 'https://www.aljazeera.com/mritems/imagecache/mbdxxlarge/mritems/Images/2020/4/7/bd7b1ee8a60b4ffb9910640985eb91e5_18.jpg',
           id: 1,
           linkUrl: 'recipes/cooking',
           count: 9
         },
         {
-          title: 'baking',
+          topic: 'baking',
           imageUrl: 'https://superiorculinarycenter.com/wp-content/uploads/2019/03/baking.jpg',
           id: 2,
           linkUrl: 'recipes/baking',
           count: 8
         },
         {
-          title: 'baby food',
+          topic: 'baby food',
           imageUrl: 'https://mampfbar.de/wp-content/uploads/2017/03/5-beste-gemuesesorten-1150x768.jpg',
           id: 3,
           linkUrl: 'recipes/babyfood',
           count: 5
         },
         {
-          title: 'baby led weaning',
+          topic: 'baby led weaning',
           imageUrl: 'https://www.babyartikel.de/magazin/wp-content/uploads/2015/03/baby-led-weaning-essen-1050x700.jpg',
           size: 'large',
           id: 4,
@@ -30,7 +30,7 @@ const INITIAL_STATE = {
           count: 7
         },
         {
-          title: 'smoothies & snacks',
+          topic: 'smoothies & snacks',
           imageUrl: 'https://www.healthyrockstar.com/wp-content/uploads/smoothiesgesund-820x547.jpg',
           size: 'large',
           id: 5,

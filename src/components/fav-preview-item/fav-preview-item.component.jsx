@@ -7,7 +7,7 @@ import CustomButton from '../custom-button/custom-button.component';
 import './fav-preview-item.styles.scss';
 
 const FavPreviewItem = ({ item, deleteItem }) => {
-    const { name, imageUrl } = item;
+    const { title, imageUrl } = item;
     return (
         <div className='fav-preview-item'>
             <div
@@ -17,7 +17,7 @@ const FavPreviewItem = ({ item, deleteItem }) => {
                 }}
             />
             <div onClick={() => deleteItem(item)} className='x-icon'>x</div>
-            <CustomButton>{name}</CustomButton>
+            <CustomButton>{title}</CustomButton>
         </div>
 )};
 

@@ -7,13 +7,13 @@ import { selectFavItems } from '../../redux/favorites/fav.selectors';
 
 import './dropdown-section.styles.scss';
 
-const DropdownSection = ({ favItems, title }) => {
+const DropdownSection = ({ favItems, topic }) => {
     return (
         <div className='dropdown-section'>
-            <span className='item-title'>{title}<hr /></span>
+            <span className='item-title'>{topic}<hr /></span>
                 <div className='test'>
                     {favItems.map(favItem => (
-                        favItem.title === title
+                        favItem.topic === topic
                         ? <FavItem key={favItem.id} item={favItem} />
                         : null
                     ))}

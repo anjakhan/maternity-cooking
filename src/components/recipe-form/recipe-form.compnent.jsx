@@ -14,29 +14,33 @@ class RecipeForm extends React.Component{
         super(props);
 
         this.state = {
-            name: '',
-            title: 'Cooking',
+            id: '',
+            title: '',
+            topic: 'Cooking',
             directions: '',
-            ingredients: []
+            ingredients: [],
+            linkUrl: ''
         }
     }
 
     handleSubmit = async event => {
         event.preventDefault();
 
-        const { name, title, directions, ingredients } = this.state;
+        const { id, title, topic, directions, ingredients, linkUrl } = this.state;
         
         try {
-            await createRecipesDocument({ name, title, directions, ingredients });
+            await createRecipesDocument({ id, title, topic, directions, ingredients, linkUrl });
 
             this.setState = ({
-                name: '',
-                title: 'Cooking',
+                id: '',
+                title: '',
+                topic: 'Cooking',
                 directions: '',
-                ingredients: []
+                ingredients: [],
+                linkUrl: ''
             })
 
-            this.props.history.push('/');
+            this.props.history.push('/recipes');
             // this.props.history.push(`/store/${this.storeInput.value}`);
 
         } catch (error) {
@@ -48,6 +52,8 @@ class RecipeForm extends React.Component{
         const { name, value } = event.target;
 
         this.setState({ [name]: value });
+        this.setState({ linkUrl: `recipes/${this.state.title}` })
+        // this.setState({ linkUrl: this.name })
     };
 
     handleIngredients = event => {
@@ -64,17 +70,17 @@ class RecipeForm extends React.Component{
                 <form onSubmit={this.handleSubmit}>
                     <div className='left'>
                         <FormInput 
-                            name='name' 
+                            name='title' 
                             type='text' 
-                            value={this.state.name} 
+                            value={this.state.title} 
                             handleChange={this.handleChange}
-                            label='Recipe Title'
+                            label='Recipe Title ...'
                             required
                         />
                         <div className='topic'>
-                            <label htmlFor="title">Choose a topic:</label>
+                            <label htmlFor="topic">Choose a topic:</label>
                             <select 
-                                name='title'
+                                name='topic'
                                 onChange={this.handleChange}
                                 required
                             >
@@ -91,6 +97,7 @@ class RecipeForm extends React.Component{
                             value={this.state.directions} 
                             onChange={this.handleChange}
                             label='directions'
+                            placeholder='Cooking directions ...'
                             required 
                         />
                         <FileUploader
@@ -110,6 +117,7 @@ class RecipeForm extends React.Component{
                             value={this.state.ingredients}
                             onChange={this.handleIngredients}
                             label='Ingredients'
+                            placeholder='Ingredients separated by comma ...'
                             required
                         />
                         <CustomButton type='submit'>Submit Recipe</CustomButton>

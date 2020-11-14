@@ -6,12 +6,12 @@ import { deleteItem } from '../../redux/favorites/fav.actions';
 import './fav-item.styles.scss';
 
 const FavItem = ({ item, deleteItem }) => {
-    const { name, imageUrl } = item;
+    const { title, imageUrl } = item;
     return (
         <div className='fav-item'>
             <img src={imageUrl} alt='item' />
             <div className='item-details'>
-                <span className='name'>{name}</span>
+                <span className='name'>{title}</span>
                 <span onClick={() => deleteItem(item)} className='x-icon'>x</span>
             </div>
         </div>
