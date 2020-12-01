@@ -11,8 +11,7 @@
         background-color: black;
         color: white;
         border: none;
-        font-family: 'Srisakdi', cursive;
-        font-weight: bold;
+        font-weight: 600;
         cursor: pointer;
         display: flex;
         justify-content: center;
@@ -31,7 +30,6 @@
         }
 
         input {
-            font-family: 'Srisakdi', cursive;
             opacity: 0;
             width: 10px;
             cursor: pointer;
@@ -61,6 +59,4 @@
             line-height: 40px;
         }
     }
-
-    
 }

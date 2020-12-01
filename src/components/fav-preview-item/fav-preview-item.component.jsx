@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { deleteItem } from '../../redux/favorites/fav.actions';
-import CustomButton from '../custom-button/custom-button.component';
 
 import './fav-preview-item.styles.scss';
 
@@ -16,8 +15,11 @@ const FavPreviewItem = ({ item, deleteItem }) => {
                     backgroundImage: `url(${imageUrl})`
                 }}
             />
-            <div onClick={() => deleteItem(item)} className='x-icon'>x</div>
-            <CustomButton>{title}</CustomButton>
+            <div className='recipe-title'>
+                {title}
+                <div onClick={() => deleteItem(item)} className='x-icon'>x</div>
+            </div>
+            
         </div>
 )};
 

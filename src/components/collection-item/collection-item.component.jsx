@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import { ReactComponent as HeartIcon } from '../../assets/heart2a.svg';
 import { addItem } from '../../redux/favorites/fav.actions';
-import CustomButton from '../custom-button/custom-button.component';
 
 import './collection-item.styles.scss';
 
@@ -20,7 +19,7 @@ const CollectionItem = ({ recipe, addItem }) => {
             />
             <HeartIcon onClick={() => addItem(recipe)} className='heart-icon' />
             <Link className='option' to='/recipes'></Link>
-            <CustomButton>{title}</CustomButton>
+            <div className='collection-title'>{title}</div>
         </div>
     )
 };

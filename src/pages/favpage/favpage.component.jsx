@@ -6,11 +6,7 @@ import './favpage.styles.scss';
 
 const FavPage = () => (
     <div className='fav-page'>
-        <FavPreview topic='Cooking'/>
-        <FavPreview topic='Baking'/>
-        <FavPreview topic='Babys Food'/>
-        <FavPreview topic='Baby Led Weaning'/>
-        <FavPreview topic='Smoothies & Snacks'/>
+        <FavPreview/>
     </div>
 );
 

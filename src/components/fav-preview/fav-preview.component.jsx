@@ -10,17 +10,15 @@ import './fav-preview.styles.scss';
 const FavPreview = ({ favItems, topic }) => {
     return (
         <div className='fav-preview'>
-            <h1 className='title'>{topic}<hr /></h1>
+            <h1 className='title'>Favorite Recipes<hr /></h1>
             {favItems.length ? (
                 <div className='fav-selection'>
                     {favItems.map(favItem => (
-                        favItem.topic === topic
-                        ? <FavPreviewItem key={favItem.id} item={favItem} />
-                        : null
+                        <FavPreviewItem key={favItem.id} item={favItem} />
                     ))}
                 </div>
             ) : (
-                <p>No recipes for this section selected</p>
+                <p>No recipes added to favorites</p>
             )}
         </div>
 )};
