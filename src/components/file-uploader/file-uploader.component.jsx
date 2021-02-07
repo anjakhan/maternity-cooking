@@ -1,7 +1,8 @@
 import React from 'react';
 
-import './file-uploader.styles.scss';
+import { uploadImage } from '../../firebase/firebase.utils';
 
+import './file-uploader.styles.scss';
 
 const updateImageDisplay = () => {
     const preview = document.querySelector('.preview');
@@ -20,21 +21,23 @@ const updateImageDisplay = () => {
         preview.appendChild(list);
     
         for(const file of curFiles) {
-        const listItem = document.createElement('li');
-        const para = document.createElement('p');
-        if(validFileType(file)) {
-            para.textContent = `${file.name} (${returnFileSize(file.size)})`;
-            const image = document.createElement('img');
-            image.src = URL.createObjectURL(file);
-    
-            listItem.appendChild(image);
-            listItem.appendChild(para);
-        } else {
-            para.textContent = `File name ${file.name}: Not a valid file type. Update your selection.`;
-            listItem.appendChild(para);
-        }
-    
-        list.appendChild(listItem);
+            const listItem = document.createElement('li');
+            const para = document.createElement('p');
+            if(validFileType(file)) {
+                para.textContent = `${file.name} (${returnFileSize(file.size)})`;
+                const image = document.createElement('img');
+                image.src = URL.createObjectURL(file);
+                image.alt = file.name;
+                uploadImage(file);
+        
+                listItem.appendChild(image);
+                listItem.appendChild(para);
+            } else {
+                para.textContent = `File name ${file.name}: Not a valid file type. Update your selection.`;
+                listItem.appendChild(para);
+            }
+        
+            list.appendChild(listItem);
         }
     }
 }

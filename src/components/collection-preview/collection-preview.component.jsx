@@ -37,7 +37,7 @@ class CollectionPreview extends React.Component {
                 <h1 className='topic'>{this.props.topic}</h1>
                 <div className='preview'>
                     {recipes.filter(recipe => recipe.topic === this.props.topic)
-                        .map(topic => <CollectionItem key={topic.id} recipe={topic} />)
+                        .map((topic, idx) => idx < 4 ? <CollectionItem key={topic.id} recipe={topic} /> : null)
                     }
                 </div>
             </div>
@@ -46,5 +46,3 @@ class CollectionPreview extends React.Component {
 }
 
 export default CollectionPreview;
-
-// const CollectionPreview = ({ topic, items }) =>

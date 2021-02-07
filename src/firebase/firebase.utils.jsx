@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/storage';
 // import 'firebase/auth';
 
 const config = {
@@ -37,14 +38,15 @@ const config = {
 //     return output
 // }
 
-export const createRecipesDocument = ({ id, topic, title, directions, ingredients, linkUrl }) => {
+export const createRecipesDocument = ({ id, topic, title, directions, ingredients, linkUrl, imgUrl }) => {
     firestore.collection("recipes").add({
         id,
         title,
         topic,
         directions,
         ingredients,
-        linkUrl
+        linkUrl,
+        imgUrl
     })
     .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
@@ -57,9 +59,20 @@ export const createRecipesDocument = ({ id, topic, title, directions, ingredient
     });
 }
 
+export const uploadImage = (file) => {
+    const storageRef = firebase.storage().ref();
+    const imagesRef = storageRef.child(file.name);
+    imagesRef.put(file);
+};
+
+export const dowloadFile = (filename) => {
+    const storageRef = firebase.storage().ref();
+    return storageRef.child(filename).getDownloadURL();
+};
+
 firebase.initializeApp(config);
 
 // export const auth = firebase.auth()
-export const firestore = firebase.firestore()
+export const firestore = firebase.firestore();
 
 export default firebase;

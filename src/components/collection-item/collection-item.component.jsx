@@ -17,7 +17,7 @@ const CollectionItem = ({ recipe, addItem }) => {
                     backgroundImage: `url(https://asianinspirations.com.au/wp-content/uploads/2019/07/Chinese-Cooking-Hacks.jpg)`
                 }}
             />
-            <HeartIcon onClick={() => addItem(recipe)} className='heart-icon' />
+            <HeartIcon onClick={() => addItem(recipe)} className='heart-icon' style={{zIndex: "5"}} />
             <Link className='option' to='/recipes'></Link>
             <div className='collection-title'>{title}</div>
         </div>

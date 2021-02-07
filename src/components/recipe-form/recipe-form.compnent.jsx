@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-import { createRecipesDocument } from '../../firebase/firebase.utils';
+import { createRecipesDocument, dowloadFile } from '../../firebase/firebase.utils';
 
 import FormInput from '../form-input/form-input.component';
 import FileUploader from '../file-uploader/file-uploader.component';
@@ -19,17 +19,30 @@ class RecipeForm extends React.Component{
             topic: 'Cooking',
             directions: '',
             ingredients: [],
-            linkUrl: ''
+            linkUrl: '',
+            imgUrl: ''
         }
     }
 
     handleSubmit = async event => {
         event.preventDefault();
+    
+        const img = document.querySelector('img');
 
-        const { id, title, topic, directions, ingredients, linkUrl } = this.state;
+        if (img !== null) {
+            const filename = img.alt;
+            dowloadFile(filename)
+                .then(url => {
+                    console.log(url);
+                    this.setState({ imgUrl: url })
+                })
+                .catch(error => console.log('no image found', error));
+        };
+
+        const { id, title, topic, directions, ingredients, linkUrl, imgUrl } = this.state;
         
         try {
-            await createRecipesDocument({ id, title, topic, directions, ingredients, linkUrl });
+            await createRecipesDocument({ id, title, topic, directions, ingredients, linkUrl, imgUrl });
 
             this.setState = ({
                 id: '',
