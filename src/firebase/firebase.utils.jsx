@@ -38,7 +38,7 @@ const config = {
 //     return output
 // }
 
-export const createRecipesDocument = ({ id, topic, title, directions, ingredients, linkUrl, imgUrl }) => {
+export const createRecipesDocument = ({ id, topic, title, directions, ingredients, linkUrl, picture, date }) => {
     firestore.collection("recipes").add({
         id,
         title,
@@ -46,17 +46,26 @@ export const createRecipesDocument = ({ id, topic, title, directions, ingredient
         directions,
         ingredients,
         linkUrl,
-        imgUrl
+        picture,
+        date
     })
-    .then(function(docRef) {
+    .then(docRef => {
         console.log("Document written with ID: ", docRef.id);
         firestore.collection('recipes').doc(`${docRef.id}`).set({
             id: docRef.id
         }, { merge: true });
     })
-    .catch(function(error) {
+    .catch(error => {
         console.error("Error adding document: ", error);
     });
+}
+
+export const getRecipes = () => {
+    const recipes = firestore.collection("recipes").get()
+        .then(querySnapshot => {
+            return querySnapshot.docs.map(doc => doc.data());
+        })
+    return recipes;
 }
 
 export const uploadImage = (file) => {

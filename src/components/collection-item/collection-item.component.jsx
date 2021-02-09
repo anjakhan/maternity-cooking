@@ -8,13 +8,13 @@ import { addItem } from '../../redux/favorites/fav.actions';
 import './collection-item.styles.scss';
 
 const CollectionItem = ({ recipe, addItem }) => {
-    const { title } = recipe;
+    const { title, picture } = recipe;
     return (
         <div className='collection-item'>
             <div
                 className='image'
                 style={{
-                    backgroundImage: `url(https://asianinspirations.com.au/wp-content/uploads/2019/07/Chinese-Cooking-Hacks.jpg)`
+                    backgroundImage: `url(${picture})`
                 }}
             />
             <HeartIcon onClick={() => addItem(recipe)} className='heart-icon' style={{zIndex: "5"}} />

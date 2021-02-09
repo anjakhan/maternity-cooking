@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import { getRecipes } from '../../firebase/firebase.utils';
 
 import { ReactComponent as HeartIcon } from '../../assets/heart2a.svg';
 import { addItem } from '../../redux/favorites/fav.actions';
@@ -19,35 +18,38 @@ class RecipeItem extends React.Component {
             topic: 'Cooking',
             directions: '',
             ingredients: [],
-            linkUrl: ''
+            linkUrl: '',
+            ImgUrl: ''
         }
     }
 
     async componentDidMount() {
+        // add a spinner on recipe loading in recipe frame
         try {
-            const recipe = []
-            await firebase.firestore().collection('recipes').get()
-            .then(function(querySnapshot) {
-                querySnapshot.forEach(function(doc) {
-                    recipe.push(doc.data())
-                });
-            });
-            const { id, title, topic, directions, ingredients, linkUrl} = recipe[0]
+            const recipes = [];
+            await getRecipes()
+                .then(data => {
+                    const filtered = data.filter(recipe => recipe.title === 'Hot Chocolate');
+                    filtered.forEach(recipe => recipes.push(recipe));
+                })
+                .catch(error => console.log('no recipes found', error));
+            const { id, title, topic, directions, ingredients, linkUrl, picture } = recipes[0];
             this.setState({
                 id,
                 title,
                 topic,
                 directions,
                 ingredients,
-                linkUrl
-            })
+                linkUrl,
+                picture
+            });
         } catch (error) {
             console.log(error);
         }
     }
 
     render () {
-        const { title, topic, directions, ingredients} = this.state
+        const { title, topic, directions, ingredients, picture} = this.state;
         return (
             <div className='container'>
                 <div className='title'>
@@ -59,13 +61,13 @@ class RecipeItem extends React.Component {
                     <div
                         className='image'
                         style={{
-                            backgroundImage: `url(https://asianinspirations.com.au/wp-content/uploads/2019/07/Chinese-Cooking-Hacks.jpg)`
+                            backgroundImage: `url(${picture})`
                         }}
                     />
                     <div className='ingredients'>
                         <h3>Ingredients</h3>
                         <ul>
-                            {ingredients.map(function (ingredient, index) {
+                            {ingredients.map((ingredient, index) => {
                                 return <li key={index}> {ingredient} </li>;
                             })}
                         </ul>

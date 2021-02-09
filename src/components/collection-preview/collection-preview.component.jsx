@@ -1,7 +1,6 @@
 import React from 'react';
 
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import { getRecipes } from '../../firebase/firebase.utils';
 
 import CollectionItem from '../collection-item/collection-item.component';
 
@@ -18,13 +17,12 @@ class CollectionPreview extends React.Component {
     async componentDidMount() {
         try {
             const recipes = [];
-            await firebase.firestore().collection('recipes').get()
-            .then(function(querySnapshot) {
-                querySnapshot.forEach(function(doc) {
-                    recipes.push(doc.data())
-                });
-            });
-            this.setState({recipes})
+            await getRecipes()
+                .then(data => {
+                    data.forEach(recipe => recipes.push(recipe));
+                })
+                .catch(error => console.log('no recipes found', error));
+            this.setState({recipes});
         } catch (error) {
             console.log(error);
         }

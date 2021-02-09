@@ -2,25 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import FavPreviewItem from '../fav-preview-item/fav-preview-item.component';
+import Preview from '../preview/preview.component';
 import { selectFavItems } from '../../redux/favorites/fav.selectors';
 
-import './fav-preview.styles.scss';
-
-const FavPreview = ({ favItems, topic }) => {
+const FavPreview = ({ favItems }) => {
     return (
-        <div className='fav-preview'>
-            <h1 className='title'>Favorite Recipes<hr /></h1>
-            {favItems.length ? (
-                <div className='fav-selection'>
-                    {favItems.map(favItem => (
-                        <FavPreviewItem key={favItem.id} item={favItem} />
-                    ))}
-                </div>
-            ) : (
-                <p>No recipes added to favorites</p>
-            )}
-        </div>
+        <Preview items={favItems} topic='Favorite Recipes' />
 )};
 
 const mapStateToProps = createStructuredSelector({

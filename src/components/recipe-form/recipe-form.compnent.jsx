@@ -20,29 +20,31 @@ class RecipeForm extends React.Component{
             directions: '',
             ingredients: [],
             linkUrl: '',
-            imgUrl: ''
+            picture: '',
+            date: ''
         }
     }
 
     handleSubmit = async event => {
         event.preventDefault();
-    
+
         const img = document.querySelector('img');
-
-        if (img !== null) {
-            const filename = img.alt;
-            dowloadFile(filename)
-                .then(url => {
-                    console.log(url);
-                    this.setState({ imgUrl: url })
-                })
-                .catch(error => console.log('no image found', error));
-        };
-
-        const { id, title, topic, directions, ingredients, linkUrl, imgUrl } = this.state;
+        const filename = img != null ? img.alt : 'empty';
+        this.setState({ date: new Date() });
         
         try {
-            await createRecipesDocument({ id, title, topic, directions, ingredients, linkUrl, imgUrl });
+            await dowloadFile(filename)
+                .then(url => {
+                    this.setState({ picture: url });
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.setState({ picture: 'https://cdn.pixabay.com/photo/2017/06/01/18/46/cook-2364221_960_720.jpg'});
+                })
+            
+            const { id, title, topic, directions, ingredients, linkUrl, picture, date } = this.state;
+
+            await createRecipesDocument({ id, title, topic, directions, ingredients, linkUrl, picture, date });
 
             this.setState = ({
                 id: '',
@@ -50,11 +52,12 @@ class RecipeForm extends React.Component{
                 topic: 'Cooking',
                 directions: '',
                 ingredients: [],
-                linkUrl: ''
+                linkUrl: '',
+                picture: '',
+                date
             })
 
-            this.props.history.push('/recipes');
-            // this.props.history.push(`/store/${this.storeInput.value}`);
+            this.props.history.push(`/recipes/${topic}`);
 
         } catch (error) {
             console.log(error);
@@ -66,7 +69,6 @@ class RecipeForm extends React.Component{
 
         this.setState({ [name]: value });
         this.setState({ linkUrl: `recipes/${this.state.title}` })
-        // this.setState({ linkUrl: this.name })
     };
 
     handleIngredients = event => {
