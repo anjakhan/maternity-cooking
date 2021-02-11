@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 import { getRecipes } from '../../firebase/firebase.utils';
 
@@ -11,10 +12,13 @@ class CollectionPreview extends React.Component {
         super(props);
 
         this.state = {
-            recipes: []
+            recipes: [],
+            history: this.props.history,
+            match: this.props.match,
+            routeName: this.props.routeName
         }
     }
-    async componentDidMount() {
+    async componentDidMount() {        
         try {
             const recipes = [];
             await getRecipes()
@@ -29,10 +33,12 @@ class CollectionPreview extends React.Component {
     }
 
     render() {
-        const recipes = this.state.recipes;
+        const {recipes, history, match, routeName} = this.state;
         return (
             <div className='collection-preview'>
-                <h1 className='topic'>{this.props.topic}</h1>
+                <h1 className='topic' onClick={() => history.push(`${match.url}/${routeName}`)}>
+                    {this.props.topic}
+                </h1>
                 <div className='preview'>
                     {recipes.filter(recipe => recipe.topic === this.props.topic)
                         .map((topic, idx) => idx < 4 ? <CollectionItem key={topic.id} recipe={topic} /> : null)
@@ -43,4 +49,4 @@ class CollectionPreview extends React.Component {
     }
 }
 
-export default CollectionPreview;
+export default withRouter(CollectionPreview);

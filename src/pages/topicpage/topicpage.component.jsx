@@ -1,11 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import TopicPreview from '../../components/topic-preview/topic-preview.component';
 
-const TopicPage = () => (
-    <div className='fav-page'>
-        <TopicPreview />
-    </div>
+import { selectTopic } from '../../redux/recipes/recipes.selectors';
+
+const TopicPage = ({ topics }) => (
+    <>
+        <TopicPreview topic={topics.topic} />
+    </>
 );
 
-export default TopicPage;
+const mapStateToProps = (state, ownProps) => ({
+    topics: selectTopic(ownProps.match.params.topicId)(state)
+});
+
+export default connect(mapStateToProps)(TopicPage);

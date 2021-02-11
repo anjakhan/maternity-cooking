@@ -16,13 +16,14 @@ class TopicPreview extends React.Component {
     async componentDidMount() {
         try {
             const recipes = [];
+            const topic = this.props.topic;
             await getRecipes()
                 .then(data => {
-                    const filtered = data.filter(recipe => recipe.topic === 'Smoothies & Snacks');
+                    const filtered = data.filter(recipe => recipe.topic === topic);
                     filtered.forEach(recipe => recipes.push(recipe));
                 })
                 .catch(error => console.log('no recipes found', error));
-            this.setState({recipes, topic: 'Baking'});
+            this.setState({recipes, topic: topic});
         } catch (error) {
             console.log(error);
         }
