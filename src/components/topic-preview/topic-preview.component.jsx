@@ -19,18 +19,18 @@ class TopicPreview extends React.Component {
             const topic = this.props.topic;
             await getRecipes()
                 .then(data => {
-                    const filtered = data.filter(recipe => recipe.topic === topic);
+                    const filtered = data.filter(recipe => recipe.topic === this.props.routeName);
                     filtered.forEach(recipe => recipes.push(recipe));
                 })
                 .catch(error => console.log('no recipes found', error));
-            this.setState({recipes, topic: topic});
+            this.setState({recipes, topic});
         } catch (error) {
             console.log(error);
         }
     }
 
     render() {
-        const { recipes, topic } = this.state;
+        const { recipes, topic, routeName } = this.state;
         return (
             <Preview items={recipes} topic={topic} />
         )

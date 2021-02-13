@@ -40,8 +40,9 @@ class CollectionPreview extends React.Component {
                     {this.props.topic}
                 </h1>
                 <div className='preview'>
-                    {recipes.filter(recipe => recipe.topic === this.props.topic)
-                        .map((topic, idx) => idx < 4 ? <CollectionItem key={topic.id} recipe={topic} /> : null)
+                    {recipes.filter(recipe => recipe.topic === routeName)
+                        .slice(0, 4)
+                        .map(recipe => <CollectionItem key={recipe.id} recipe={recipe} linkUrl={`${match.url}/${routeName}/${recipe.title}`} />)
                     }
                 </div>
             </div>

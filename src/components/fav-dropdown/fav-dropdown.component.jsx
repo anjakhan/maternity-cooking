@@ -9,11 +9,11 @@ import './fav-dropdown.styles.scss';
 const FavDropdown = ({ history }) => (
     <div className='fav-dropdown'>
         <div className='fav-dropdown-section'>
-            <DropdownSection topic='Cooking'/>
-            <DropdownSection topic='Baking'/>
-            <DropdownSection topic='Babys Food'/>
-            <DropdownSection topic='Baby Led Weaning'/>
-            <DropdownSection topic='Smoothies & Snacks'/>
+            <DropdownSection topic='Cooking' shortcut='cooking' />
+            <DropdownSection topic='Baking' shortcut='baking' />
+            <DropdownSection topic='Babys Food' shortcut='babyfood' />
+            <DropdownSection topic='Baby Led Weaning' shortcut='blw' />
+            <DropdownSection topic='Smoothies & Snacks' shortcut='smoothies' />
         </div>
         <CustomButton onClick={() => history.push('/favpage')}>
             go to favorites

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import { ReactComponent as HeartIcon } from '../../assets/heart2a.svg';
 import { deleteItem } from '../../redux/favorites/fav.actions';
@@ -7,15 +8,17 @@ import { addItem } from '../../redux/favorites/fav.actions';
 
 import './preview-item.styles.scss';
 
-const PreviewItem = ({ item, deleteItem, addItem, topic }) => {
+const PreviewItem = ({ item, deleteItem, addItem, topic, history }) => {
     const { title, picture } = item;
     return (
         <div className='preview-item'>
             <div
                 className='image'
                 style={{
-                    backgroundImage: `url(${picture})`
+                    backgroundImage: `url(${picture})`,
+                    cursor: 'pointer'
                 }}
+                onClick={() => history.push(`/recipes/${topic}/${title}`)}
             />
             <div className='recipe-title'>
                 {title}
@@ -34,4 +37,4 @@ const mapDispatchToProps = dispatch => ({
     addItem: item => dispatch(addItem(item))
 })
 
-export default connect(null, mapDispatchToProps)(PreviewItem);
+export default withRouter(connect(null, mapDispatchToProps)(PreviewItem));

@@ -2,9 +2,9 @@ import React from 'react';
 
 import RecipeItem from '../../components/recipe-item/recipe-item.component';
 
-const DisplayRecipePage = () => (
+const DisplayRecipePage = ({match}) => (
     <div className='recipes-page'>
-        <RecipeItem />
+        <RecipeItem recipeId={match.params.recipeId} />
     </div>
 );
 

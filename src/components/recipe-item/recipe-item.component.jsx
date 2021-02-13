@@ -13,12 +13,12 @@ class RecipeItem extends React.Component {
         super(props);
 
         this.state = {
+            recipe: null,
             id: '',
             title: '',
             topic: 'Cooking',
-            directions: '',
+            directions: [],
             ingredients: [],
-            linkUrl: '',
             ImgUrl: ''
         }
     }
@@ -29,18 +29,18 @@ class RecipeItem extends React.Component {
             const recipes = [];
             await getRecipes()
                 .then(data => {
-                    const filtered = data.filter(recipe => recipe.title === 'Hot Chocolate');
+                    const filtered = data.filter(recipe => recipe.title === this.props.recipeId);
                     filtered.forEach(recipe => recipes.push(recipe));
                 })
                 .catch(error => console.log('no recipes found', error));
-            const { id, title, topic, directions, ingredients, linkUrl, picture } = recipes[0];
+            const { id, title, topic, directions, ingredients, picture } = recipes[0];
             this.setState({
+                recipe: recipes[0],
                 id,
                 title,
                 topic,
                 directions,
                 ingredients,
-                linkUrl,
                 picture
             });
         } catch (error) {
@@ -49,14 +49,14 @@ class RecipeItem extends React.Component {
     }
 
     render () {
-        const { title, topic, directions, ingredients, picture} = this.state;
+        const { recipe, title, topic, directions, ingredients, picture} = this.state;
         return (
             <div className='container'>
                 <div className='title'>
                     <h1>{title}</h1>
                     <h2> ~ {topic} ~ </h2>
                 </div>
-                <HeartIcon onClick={() => addItem(this.state)} className='heart-icon' />
+                <HeartIcon onClick={() => addItem(recipe)} className='heart-icon' />
                 <div className='wrapper'>
                     <div
                         className='image'
@@ -66,16 +66,16 @@ class RecipeItem extends React.Component {
                     />
                     <div className='ingredients'>
                         <h3>Ingredients</h3>
-                        <ul>
-                            {ingredients.map((ingredient, index) => {
-                                return <li key={index}> {ingredient} </li>;
-                            })}
+                        <ul className='ingredients-list'>
+                            {ingredients.map((ingredient, index) => <li key={index}> {ingredient} </li>)}
                         </ul>
                     </div>
                 </div>
                 <div className='description'>
                     <h3>Preparation</h3>
-                    <p>{directions}</p>
+                    <ul style={{padding:0}}>
+                        {directions.map((direction, idx) => <p key={idx}> {direction} </p>)}
+                    </ul>
                 </div>
             </div>
         )
@@ -83,7 +83,7 @@ class RecipeItem extends React.Component {
 };
 
 const mapDispatchToProps = dispatch => ({
-    addItem: item => dispatch(addItem(item))
+    addItem: recipe => dispatch(addItem(recipe))
 })
 
 export default connect(null, mapDispatchToProps)(RecipeItem);

@@ -19,7 +19,6 @@ class RecipeForm extends React.Component{
             topic: 'Cooking',
             directions: '',
             ingredients: [],
-            linkUrl: '',
             picture: '',
             date: ''
         }
@@ -42,9 +41,9 @@ class RecipeForm extends React.Component{
                     this.setState({ picture: 'https://cdn.pixabay.com/photo/2017/06/01/18/46/cook-2364221_960_720.jpg'});
                 })
             
-            const { id, title, topic, directions, ingredients, linkUrl, picture, date } = this.state;
+            const { id, title, topic, directions, ingredients, picture, date } = this.state;
 
-            await createRecipesDocument({ id, title, topic, directions, ingredients, linkUrl, picture, date });
+            await createRecipesDocument({ id, title, topic, directions, ingredients, picture, date });
 
             this.setState = ({
                 id: '',
@@ -52,10 +51,9 @@ class RecipeForm extends React.Component{
                 topic: 'Cooking',
                 directions: '',
                 ingredients: [],
-                linkUrl: '',
                 picture: '',
                 date
-            })
+            });
 
             this.props.history.push(`/recipes/${topic}`);
 
@@ -66,15 +64,17 @@ class RecipeForm extends React.Component{
 
     handleChange = event => {
         const { name, value } = event.target;
-
         this.setState({ [name]: value });
-        this.setState({ linkUrl: `recipes/${this.state.title}` })
     };
 
     handleIngredients = event => {
         const { name, value } = event.target;
-
         this.setState({ [name]: value.split(',') });
+    }
+
+    handleDirections = event => {
+        const { name, value } = event.target;
+        this.setState({ [name]: value.split(/\r?\n/) });
     }
 
     render () {
@@ -99,18 +99,18 @@ class RecipeForm extends React.Component{
                                 onChange={this.handleChange}
                                 required
                             >
-                                <option value='Cooking'>Cooking</option>
-                                <option value='Baking'>Baking</option>
-                                <option value='Babys Food'>Babys Food</option>
-                                <option value='Baby Led Weaning'>Baby Led Weaning</option>
-                                <option value='Smoothies & Snacks'>Smoothies & Snacks</option>
+                                <option value='cooking'>Cooking</option>
+                                <option value='baking'>Baking</option>
+                                <option value='babyfood'>Babys Food</option>
+                                <option value='blw'>Baby Led Weaning</option>
+                                <option value='smoothies'>Smoothies & Snacks</option>
                             </select>
                         </div>
                         <textarea
                             name='directions' 
                             type='text' 
                             value={this.state.directions} 
-                            onChange={this.handleChange}
+                            onChange={this.handleDirections}
                             label='directions'
                             placeholder='Cooking directions ...'
                             required 

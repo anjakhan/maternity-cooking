@@ -38,14 +38,13 @@ const config = {
 //     return output
 // }
 
-export const createRecipesDocument = ({ id, topic, title, directions, ingredients, linkUrl, picture, date }) => {
+export const createRecipesDocument = ({ id, topic, title, directions, ingredients, picture, date }) => {
     firestore.collection("recipes").add({
         id,
         title,
         topic,
         directions,
         ingredients,
-        linkUrl,
         picture,
         date
     })

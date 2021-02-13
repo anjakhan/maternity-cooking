@@ -7,7 +7,7 @@ import { selectTopic } from '../../redux/recipes/recipes.selectors';
 
 const TopicPage = ({ topics }) => (
     <>
-        <TopicPreview topic={topics.topic} />
+        <TopicPreview topic={topics.topic} routeName={topics.routeName} />
     </>
 );
 
