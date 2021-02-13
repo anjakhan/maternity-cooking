@@ -17,7 +17,7 @@ class RecipeForm extends React.Component{
             id: '',
             title: '',
             topic: 'Cooking',
-            directions: '',
+            preparation: '',
             ingredients: [],
             picture: '',
             date: ''
@@ -29,6 +29,7 @@ class RecipeForm extends React.Component{
 
         const img = document.querySelector('img');
         const filename = img != null ? img.alt : 'empty';
+        const directions = this.state.preparation.replace(/\r\n/g,'\n').split('\n');
         this.setState({ date: new Date() });
         
         try {
@@ -41,7 +42,7 @@ class RecipeForm extends React.Component{
                     this.setState({ picture: 'https://cdn.pixabay.com/photo/2017/06/01/18/46/cook-2364221_960_720.jpg'});
                 })
             
-            const { id, title, topic, directions, ingredients, picture, date } = this.state;
+            const { id, title, topic, ingredients, picture, date } = this.state;
 
             await createRecipesDocument({ id, title, topic, directions, ingredients, picture, date });
 
@@ -49,7 +50,7 @@ class RecipeForm extends React.Component{
                 id: '',
                 title: '',
                 topic: 'Cooking',
-                directions: '',
+                preparation: '',
                 ingredients: [],
                 picture: '',
                 date
@@ -70,11 +71,6 @@ class RecipeForm extends React.Component{
     handleIngredients = event => {
         const { name, value } = event.target;
         this.setState({ [name]: value.split(',') });
-    }
-
-    handleDirections = event => {
-        const { name, value } = event.target;
-        this.setState({ [name]: value.split(/\r?\n/) });
     }
 
     render () {
@@ -107,11 +103,11 @@ class RecipeForm extends React.Component{
                             </select>
                         </div>
                         <textarea
-                            name='directions' 
+                            name='preparation' 
                             type='text' 
-                            value={this.state.directions} 
-                            onChange={this.handleDirections}
-                            label='directions'
+                            value={this.state.preparation} 
+                            onChange={this.handleChange}
+                            label='preparation'
                             placeholder='Cooking directions ...'
                             required 
                         />

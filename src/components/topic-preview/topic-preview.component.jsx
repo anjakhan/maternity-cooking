@@ -3,6 +3,7 @@ import React from 'react';
 import { getRecipes } from '../../firebase/firebase.utils';
 
 import Preview from '../preview/preview.component';
+import Spinner from '../spinner/spinner.component';
 
 class TopicPreview extends React.Component {
     constructor(props) {
@@ -10,7 +11,8 @@ class TopicPreview extends React.Component {
 
         this.state = {
             recipes: [],
-            topic: ''
+            topic: '',
+            isLoading: true
         }
     }
     async componentDidMount() {
@@ -23,16 +25,18 @@ class TopicPreview extends React.Component {
                     filtered.forEach(recipe => recipes.push(recipe));
                 })
                 .catch(error => console.log('no recipes found', error));
-            this.setState({recipes, topic});
+            this.setState({ recipes, topic, isLoading: false });
         } catch (error) {
             console.log(error);
         }
     }
 
     render() {
-        const { recipes, topic, routeName } = this.state;
+        const { recipes, topic, isLoading } = this.state;
         return (
-            <Preview items={recipes} topic={topic} />
+            <>
+                { isLoading ? <Spinner /> : <Preview items={recipes} topic={topic} /> }
+            </>
         )
     }
 };

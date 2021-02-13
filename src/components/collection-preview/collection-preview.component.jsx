@@ -42,7 +42,7 @@ class CollectionPreview extends React.Component {
                 <div className='preview'>
                     {recipes.filter(recipe => recipe.topic === routeName)
                         .slice(0, 4)
-                        .map(recipe => <CollectionItem key={recipe.id} recipe={recipe} linkUrl={`${match.url}/${routeName}/${recipe.title}`} />)
+                        .map(recipe => <CollectionItem key={recipe.id} recipe={recipe} linkUrl={`${match.url}/${routeName}/${recipe.title}`} /> )
                     }
                 </div>
             </div>

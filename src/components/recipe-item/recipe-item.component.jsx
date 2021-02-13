@@ -6,6 +6,8 @@ import { getRecipes } from '../../firebase/firebase.utils';
 import { ReactComponent as HeartIcon } from '../../assets/heart2a.svg';
 import { addItem } from '../../redux/favorites/fav.actions';
 
+import Spinner from '../../components/spinner/spinner.component';
+
 import './recipe-item.styles.scss';
 
 class RecipeItem extends React.Component {
@@ -13,18 +15,18 @@ class RecipeItem extends React.Component {
         super(props);
 
         this.state = {
+            topicId: this.props.topicId,
             recipe: null,
             id: '',
             title: '',
-            topic: 'Cooking',
             directions: [],
             ingredients: [],
-            ImgUrl: ''
+            ImgUrl: '',
+            isLoading: true
         }
     }
 
     async componentDidMount() {
-        // add a spinner on recipe loading in recipe frame
         try {
             const recipes = [];
             await getRecipes()
@@ -33,15 +35,15 @@ class RecipeItem extends React.Component {
                     filtered.forEach(recipe => recipes.push(recipe));
                 })
                 .catch(error => console.log('no recipes found', error));
-            const { id, title, topic, directions, ingredients, picture } = recipes[0];
+            const { id, title, directions, ingredients, picture } = recipes[0];
             this.setState({
                 recipe: recipes[0],
                 id,
                 title,
-                topic,
                 directions,
                 ingredients,
-                picture
+                picture,
+                isLoading: false
             });
         } catch (error) {
             console.log(error);
@@ -49,12 +51,15 @@ class RecipeItem extends React.Component {
     }
 
     render () {
-        const { recipe, title, topic, directions, ingredients, picture} = this.state;
+        const { topicId, recipe, title, directions, ingredients, picture, isLoading } = this.state;
         return (
+            <>
+            {isLoading ? <Spinner /> : 
+            <>
             <div className='container'>
                 <div className='title'>
                     <h1>{title}</h1>
-                    <h2> ~ {topic} ~ </h2>
+                    <h2> ~ {topicId} ~ </h2>
                 </div>
                 <HeartIcon onClick={() => addItem(recipe)} className='heart-icon' />
                 <div className='wrapper'>
@@ -78,6 +83,9 @@ class RecipeItem extends React.Component {
                     </ul>
                 </div>
             </div>
+            </>
+            }
+            </>
         )
     }
 };
