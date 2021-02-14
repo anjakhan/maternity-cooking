@@ -16,7 +16,7 @@ class RecipeForm extends React.Component{
         this.state = {
             id: '',
             title: '',
-            topic: 'Cooking',
+            topic: 'cooking',
             preparation: '',
             ingredients: [],
             picture: '',
@@ -29,7 +29,7 @@ class RecipeForm extends React.Component{
 
         const img = document.querySelector('img');
         const filename = img != null ? img.alt : 'empty';
-        const directions = this.state.preparation.replace(/\r\n/g,'\n').split('\n');
+        const directions = this.state.preparation.replace(/\r\n/g,'\n').split('\n').filter(line => line);
         this.setState({ date: new Date() });
         
         try {
@@ -49,7 +49,7 @@ class RecipeForm extends React.Component{
             this.setState = ({
                 id: '',
                 title: '',
-                topic: 'Cooking',
+                topic: 'cooking',
                 preparation: '',
                 ingredients: [],
                 picture: '',

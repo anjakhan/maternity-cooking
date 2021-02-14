@@ -8,7 +8,7 @@ import { addItem } from '../../redux/favorites/fav.actions';
 
 import Spinner from '../../components/spinner/spinner.component';
 
-import './recipe-item.styles.scss';
+import { RecipeContainer, TitleContainer, HeartIconContainer, Wrapper, ImageContainer, IngredientsContainer, SectionTitle, IngredientsList, ListContainer, DescriptionContainer } from './recipe-item.styles.jsx';
 
 class RecipeItem extends React.Component {
     constructor(props) {
@@ -56,33 +56,34 @@ class RecipeItem extends React.Component {
             <>
             {isLoading ? <Spinner /> : 
             <>
-            <div className='container'>
-                <div className='title'>
+            <RecipeContainer>
+                <TitleContainer>
                     <h1>{title}</h1>
                     <h2> ~ {topicId} ~ </h2>
-                </div>
-                <HeartIcon onClick={() => addItem(recipe)} className='heart-icon' />
-                <div className='wrapper'>
-                    <div
-                        className='image'
+                </TitleContainer>
+                {/* <HeartIconContainer>
+                    <HeartIcon onClick={() => addItem(recipe)} className='heart-icon' />
+                </HeartIconContainer> */}
+                <Wrapper>
+                    <ImageContainer
                         style={{
                             backgroundImage: `url(${picture})`
                         }}
                     />
-                    <div className='ingredients'>
-                        <h3>Ingredients</h3>
-                        <ul className='ingredients-list'>
-                            {ingredients.map((ingredient, index) => <li key={index}> {ingredient} </li>)}
-                        </ul>
-                    </div>
-                </div>
-                <div className='description'>
-                    <h3>Preparation</h3>
+                    <IngredientsContainer>
+                        <SectionTitle>Ingredients</SectionTitle>
+                        <IngredientsList>
+                            {ingredients.map((ingredient, index) => <ListContainer key={index}> {ingredient} </ListContainer>)}
+                        </IngredientsList>
+                    </IngredientsContainer>
+                </Wrapper>
+                <DescriptionContainer>
+                    <SectionTitle>Preparation</SectionTitle>
                     <ul style={{padding:0}}>
                         {directions.map((direction, idx) => <p key={idx}> {direction} </p>)}
                     </ul>
-                </div>
-            </div>
+                </DescriptionContainer>
+            </RecipeContainer>
             </>
             }
             </>

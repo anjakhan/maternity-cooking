@@ -1,26 +1,29 @@
-.container:before, .container:after {
-  content: '';
-  z-index: -1;
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  width: 70%;
-  max-width: 300px;
-  max-height: 100px;
-  height: 55%;
-  -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-  -webkit-transform: skew(15deg) rotate(6deg);
-    -moz-transform: skew(15deg) rotate(6deg);
-      -ms-transform: skew(15deg) rotate(6deg);
-      -o-transform: skew(15deg) rotate(6deg);
-          transform: skew(15deg) rotate(6deg);
-}
+import styled from 'styled-components';
 
+const maxWidth = '900px';
 
-.container {
-  padding: 0 30px;
+export const RecipeContainer = styled.div`
+  &:before, &:after {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 70%;
+    max-width: 300px;
+    max-height: 100px;
+    height: 55%;
+    -webkit-box-shadow: 0 8px 13px rgba(0, 0, 0, 0.5);
+      -moz-box-shadow: 0 8px 13px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 8px 13px rgba(0, 0, 0, 0.5);
+    -webkit-transform: skew(15deg) rotate(6deg);
+      -moz-transform: skew(15deg) rotate(6deg);
+        -ms-transform: skew(15deg) rotate(6deg);
+        -o-transform: skew(15deg) rotate(6deg);
+            transform: skew(15deg) rotate(6deg);
+  }
+
+  padding: 0 30px 20px 30px;
   margin-top: 20px;
   width: 100%;
   height: auto;
@@ -35,71 +38,116 @@
   -moz-box-shadow: 1px 1px 8px rgba(0,0,0,.3);
   -webkit-box-shadow: 1px 1px 8px rgba(0,0,0,.3);
   position: relative;
+`;
 
-  .title {
-    min-width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
-    text-transform: uppercase;
+export const TitleContainer = styled.div`
+  min-width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+
+  @media screen and (max-width: ${maxWidth}) {
+    min-width: none;
+    width: auto;
   }
+`;
 
-  h3 {
-    margin-top: 0;
+export const HeartIconContainer = styled.div`
+  margin-left: 20px;
+  line-height: 50px;
+  width: 40px;
+  height: 40px;
+  opacity: 0.7;
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
   }
+`;
 
-  .wrapper {
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  @media screen and (max-width: ${maxWidth}) {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
-
-  .ingredients {
-    font-weight: 500;
-    width: 380px;
-  }
-
-  .ingredients-list {
-    display: flex;
-    flex-direction: column;
+    flex.direction: column;
     flex-wrap: wrap;
-    height: 150px;
-    text-transform: lowercase;
-    padding-left: 20px;
-  }
+`;
 
-  .image {
-    width: 300px;
-    height: 200px;
-    background-size: cover;
-    background-position: center;
-    margin-right: 30px;
-    border: 2px solid #ccc;
-    box-shadow: 3px 3px 5px rgb(33, 33, 33);
-  }
+export const ImageContainer = styled.div`
+  width: 300px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  margin-right: 30px;
+  border: 2px solid #ccc;
+  box-shadow: 3px 3px 5px rgb(33, 33, 33);
 
-  .description {
-    font-weight: 500;
-    width: 700px;
-    margin-top: 30px;
-    text-align: justify;
-    margin-left: auto;
-    margin-right: auto;
+  @media screen and (max-width: ${maxWidth}) {
+    margin: 0;
+    width: 50vmin;
+    height: 30vmin;
   }
+`;
 
-  .heart-icon{
-    margin-left: 20px;
-    line-height: 50px;
-    width: 40px;
-    height: 40px;
-    opacity: 0.7;
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    cursor: pointer;
+export const IngredientsContainer = styled.div`
+  font-weight: 500;
+  width: 380px;
 
-    &:hover {
-      opacity: 0.9;
-    }
+  @media screen and (max-width: ${maxWidth}) {
+    width: 100%;
+    padding-top: 30px;
   }
-}
-  
+`;
+
+export const SectionTitle = styled.h3 `
+  margin-top: 0;
+
+  @media screen and (max-width: ${maxWidth}) {
+    text-align: center;
+    padding-top: 10px;
+  }
+`;
+
+export const IngredientsList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 150px;
+  text-transform: lowercase;
+  padding-left: 20px;
+
+  @media screen and (max-width: ${maxWidth}) {
+    height: auto;
+    padding-left: 0;
+  }
+`;
+
+export const ListContainer = styled.li`
+  padding-right: 30px;
+
+  @media screen and (max-width: ${maxWidth}) {
+    padding-right: 0;
+    text-align: center;
+    list-style-type: none;
+  }
+`;
+
+export const DescriptionContainer = styled.div`
+  font-weight: 500;
+  width: 700px;
+  text-align: justify;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px;
+
+  @media screen and (max-width: ${maxWidth}) {
+    width: auto;
+    margin: 0;
+  }
+`;
