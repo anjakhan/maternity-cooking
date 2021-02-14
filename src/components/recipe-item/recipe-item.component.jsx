@@ -61,9 +61,9 @@ class RecipeItem extends React.Component {
                     <h1>{title}</h1>
                     <h2> ~ {topicId} ~ </h2>
                 </TitleContainer>
-                {/* <HeartIconContainer>
-                    <HeartIcon onClick={() => addItem(recipe)} className='heart-icon' />
-                </HeartIconContainer> */}
+                <HeartIconContainer onClick={() => addItem(recipe)} className='heart-icon'>
+                    <HeartIcon style={{width: '30px', height: '30px'}} />
+                </HeartIconContainer>
                 <Wrapper>
                     <ImageContainer
                         style={{

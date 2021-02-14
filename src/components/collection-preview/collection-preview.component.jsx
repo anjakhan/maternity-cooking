@@ -5,7 +5,7 @@ import { getRecipes } from '../../firebase/firebase.utils';
 
 import CollectionItem from '../collection-item/collection-item.component';
 
-import './collection-preview.styles.scss';
+import { CollectionPreviewContainer, TitleContainer, PreviewContainer } from './collection-preview.styles';
 
 class CollectionPreview extends React.Component {
     constructor(props) {
@@ -35,17 +35,17 @@ class CollectionPreview extends React.Component {
     render() {
         const {recipes, history, match, routeName} = this.state;
         return (
-            <div className='collection-preview'>
-                <h1 className='topic' onClick={() => history.push(`${match.url}/${routeName}`)}>
+            <CollectionPreviewContainer>
+                <TitleContainer onClick={() => history.push(`${match.url}/${routeName}`)}>
                     {this.props.topic}
-                </h1>
-                <div className='preview'>
+                </TitleContainer>
+                <PreviewContainer>
                     {recipes.filter(recipe => recipe.topic === routeName)
                         .slice(0, 4)
                         .map(recipe => <CollectionItem key={recipe.id} recipe={recipe} linkUrl={`${match.url}/${routeName}/${recipe.title}`} /> )
                     }
-                </div>
-            </div>
+                </PreviewContainer>
+            </CollectionPreviewContainer>
         );
     }
 }
