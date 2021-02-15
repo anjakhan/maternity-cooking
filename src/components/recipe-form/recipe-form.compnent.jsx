@@ -4,10 +4,21 @@ import { withRouter } from 'react-router-dom';
 import { createRecipesDocument, dowloadFile } from '../../firebase/firebase.utils';
 
 import FormInput from '../form-input/form-input.component';
+import FormDropdown from '../form-dropdown/form-dropdown.component';
+import FormTextarea from '../form-textarea/form-textarea.component';
 import FileUploader from '../file-uploader/file-uploader.component';
 import CustomButton from '../custom-button/custom-button.component';
 
-import './recipe-form.styles.scss';
+import { 
+    RecipeFormContainer, 
+    HeadTitle, 
+    FormContainer, 
+    FormSubcontainer, 
+    TopicInputContainer, 
+    SelectTopicContainer, 
+    TitleContainer, 
+    SubtitleContainer
+} from './recipe-form.styles';
 
 class RecipeForm extends React.Component{
     constructor(props) {
@@ -74,67 +85,51 @@ class RecipeForm extends React.Component{
     }
 
     render () {
+        const { title, preparation, ingredients } = this.state;
         return(
-            <div className='recipe-container'>
-                <h2 className='head-title'>Create a new Recipe</h2>
+            <RecipeFormContainer>
+                <HeadTitle>Create a new Recipe</HeadTitle>
 
-                <form onSubmit={this.handleSubmit}>
-                    <div className='left'>
+                <FormContainer onSubmit={this.handleSubmit}>
+                    <FormSubcontainer>
                         <FormInput 
                             name='title' 
                             type='text' 
-                            value={this.state.title} 
+                            value={title} 
                             handleChange={this.handleChange}
                             label='Recipe Title ...'
                             required
                         />
-                        <div className='topic'>
-                            <label htmlFor="topic">Choose a topic:</label>
-                            <select 
-                                name='topic'
-                                onChange={this.handleChange}
-                                required
-                            >
-                                <option value='cooking'>Cooking</option>
-                                <option value='baking'>Baking</option>
-                                <option value='babyfood'>Babys Food</option>
-                                <option value='blw'>Baby Led Weaning</option>
-                                <option value='smoothies'>Smoothies & Snacks</option>
-                            </select>
-                        </div>
-                        <textarea
-                            name='preparation' 
-                            type='text' 
-                            value={this.state.preparation} 
+                        <FormDropdown onChange={this.handleChange} />
+                        <FormTextarea
+                            name='preparation'
+                            value={preparation} 
                             onChange={this.handleChange}
-                            label='preparation'
                             placeholder='Cooking directions ...'
-                            required 
                         />
                         <FileUploader
                             id='myfile'
                             name='myfile' 
                             type='file'
-                            label='Choose an image to upload (png, jpg)'
-                            accept=".jpg, .jpeg, .png"
+                            label='Choose an image to upload (jpg, png, tiff, bmp)'
+                            accept=".jpg, .jpeg, .png, .tiff, .bmp"
                         />
-                    </div>
-                    <div className='right'>
-                        <h2>List of Ingredients</h2>
-                        <span>- Enter Ingredients separated by comma !!! -</span>
-                        <textarea
-                            name='ingredients' 
-                            type='text' 
-                            value={this.state.ingredients}
+                    </FormSubcontainer>
+                    <FormSubcontainer>
+                        <TitleContainer>List of Ingredients</TitleContainer>
+                        <SubtitleContainer>- Enter Ingredients separated by comma !!! -</SubtitleContainer>
+                        <FormTextarea
+                            name='ingredients'
+                            value={ingredients}
                             onChange={this.handleIngredients}
-                            label='Ingredients'
                             placeholder='Ingredients separated by comma ...'
-                            required
                         />
-                        <CustomButton type='submit'>Submit Recipe</CustomButton>
-                    </div>
-                </form>
-            </div>
+                        <CustomButton type='submit' style={{width: '100%'}}>
+                            Submit Recipe
+                        </CustomButton>
+                    </FormSubcontainer>
+                </FormContainer>
+            </RecipeFormContainer>
         );
     }
 };

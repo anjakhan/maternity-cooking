@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { getRecipes } from '../../firebase/firebase.utils';
-
-import { ReactComponent as HeartIcon } from '../../assets/heart2a.svg';
 import { addItem } from '../../redux/favorites/fav.actions';
 
 import Spinner from '../../components/spinner/spinner.component';
@@ -15,7 +13,8 @@ class RecipeItem extends React.Component {
         super(props);
 
         this.state = {
-            topicId: this.props.topicId,
+            topicId: this.props.topicId,            
+            addItem: this.props.addItem,
             recipe: null,
             id: '',
             title: '',
@@ -51,7 +50,7 @@ class RecipeItem extends React.Component {
     }
 
     render () {
-        const { topicId, recipe, title, directions, ingredients, picture, isLoading } = this.state;
+        const { topicId, recipe, addItem, title, directions, ingredients, picture, isLoading } = this.state;
         return (
             <>
             {isLoading ? <Spinner /> : 
@@ -61,15 +60,9 @@ class RecipeItem extends React.Component {
                     <h1>{title}</h1>
                     <h2> ~ {topicId} ~ </h2>
                 </TitleContainer>
-                <HeartIconContainer onClick={() => addItem(recipe)} className='heart-icon'>
-                    <HeartIcon style={{width: '30px', height: '30px'}} />
-                </HeartIconContainer>
+                <HeartIconContainer onClick={() => addItem(recipe)} />
                 <Wrapper>
-                    <ImageContainer
-                        style={{
-                            backgroundImage: `url(${picture})`
-                        }}
-                    />
+                    <ImageContainer imageUrl={picture} />
                     <IngredientsContainer>
                         <SectionTitle>Ingredients</SectionTitle>
                         <IngredientsList>
@@ -93,6 +86,6 @@ class RecipeItem extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
     addItem: recipe => dispatch(addItem(recipe))
-})
+});
 
 export default connect(null, mapDispatchToProps)(RecipeItem);

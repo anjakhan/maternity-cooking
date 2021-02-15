@@ -29,4 +29,9 @@ export const PreviewContainer = styled.div`
     grid-template-columns: 1fr 1fr;
     grid-gap: 5px;
   }
+
+  @media screen and (max-width: 550px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;

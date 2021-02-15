@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -9,24 +8,24 @@ import { selectFavHidden } from '../../redux/favorites/fav.selectors';
 
 import { ReactComponent as Logo} from '../../assets/maternity.svg';
 
-import './header.styles.scss';
+import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './header.styles';
 
 const Header = ({ hidden }) => (
-    <div className='header'>
-        <Link className='logo-container' to='/'>
+    <HeaderContainer>
+        <LogoContainer to='/'>
             <Logo className='logo' />
-        </Link>
-        <div className='options'>
-            <Link className='option' to='/recipes'>
+        </LogoContainer>
+        <OptionsContainer>
+            <OptionLink to='/recipes'>
                 Recipes
-            </Link>
-            <Link className='option' to='/create-recipe'>
+            </OptionLink>
+            <OptionLink to='/create-recipe'>
                 Create Recipe
-            </Link>
+            </OptionLink>
             <FavIcon />
-        </div>
+        </OptionsContainer>
         {hidden ? null : <FavDropdown />}
-    </div>
+    </HeaderContainer>
 );
 
 const mapStateToProps = createStructuredSelector({

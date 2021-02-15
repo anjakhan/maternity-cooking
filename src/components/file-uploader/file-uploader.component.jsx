@@ -2,6 +2,7 @@ import React from 'react';
 
 import { uploadImage } from '../../firebase/firebase.utils';
 
+import { FileContainer, FileLoader, FileLabel, FileInput } from './file-uploader.styles';
 import './file-uploader.styles.scss';
 
 const updateImageDisplay = () => {
@@ -43,23 +44,19 @@ const updateImageDisplay = () => {
 }
 
 const fileTypes = [
-    "image/apng",
+    "image/jpg",
     "image/bmp",
-    "image/gif",
     "image/jpeg",
-    "image/pjpeg",
     "image/png",
-    "image/svg+xml",
     "image/tiff",
     "image/webp",
-    "image/x-icon"
   ];
   
-function validFileType(file) {
+const validFileType = file => {
     return fileTypes.includes(file.type);
 }
 
-function returnFileSize(number) {
+const returnFileSize = number => {
     if(number < 1024) {
         return number + 'bytes';
     } else if(number >= 1024 && number < 1048576) {
@@ -69,20 +66,20 @@ function returnFileSize(number) {
     }
 }
 
-const FileUploader = ({ name, label, ...otherProps }) => (
-    <div className='file-container'>
-        <div className='file-loader'>
+const FileUploader = ({ name, label, ...props }) => (
+    <FileContainer className='file-container'>
+        <FileLoader>
             {label ? (
-                <label className={'file-label'} htmlFor={name}>
+                <FileLabel htmlFor={name}>
                     {label}
-                </label>
+                </FileLabel>
             ) : null}
-            <input className='file-input' onChange={updateImageDisplay} {...otherProps} />
-        </div>
+            <FileInput className='file-input' onChange={updateImageDisplay} {...props} />
+        </FileLoader>
         <div className="preview">
             <p>- No files currently selected for upload -</p>
         </div>
-    </div>
+    </FileContainer>
 );
 
 export default FileUploader;

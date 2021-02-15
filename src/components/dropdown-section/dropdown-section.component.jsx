@@ -5,21 +5,18 @@ import { createStructuredSelector } from 'reselect';
 import FavItem from '../fav-item/fav-item.component';
 import { selectFavItems } from '../../redux/favorites/fav.selectors';
 
-import './dropdown-section.styles.scss';
+import { SectionTitle, TitleBorder } from './dropdown-section.styles';
 
-const DropdownSection = ({ favItems, topic, shortcut }) => {
-    return (
-        <div className='dropdown-section'>
-            <span className='item-title'>{topic}<hr /></span>
-                <div className='test'>
-                    {favItems.map(favItem => (
-                        favItem.topic === shortcut
-                        ? <FavItem key={favItem.id} item={favItem} />
-                        : null
-                    ))}
-                </div>
-        </div>
-)};
+const DropdownSection = ({ favItems, topic, shortcut }) => (
+    <>
+        <SectionTitle>{topic}<TitleBorder /></SectionTitle>
+            {favItems.map(favItem => (
+                favItem.topic === shortcut
+                ? <FavItem key={favItem.id} item={favItem} />
+                : null
+            ))}
+    </>
+);
 
 const mapStateToProps = createStructuredSelector({
     favItems: selectFavItems

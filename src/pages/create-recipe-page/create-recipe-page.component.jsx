@@ -2,12 +2,12 @@ import React from 'react';
 
 import RecipeForm from '../../components/recipe-form/recipe-form.compnent';
 
-import './create-recipe-page.styles.scss';
+import { CreateRecipeContainer } from './create-recipe-page.styles';
 
 const CreateRecipePage = () => (
-    <div className='create-recipe-page'>
+    <CreateRecipeContainer>
         <RecipeForm />
-    </div>
+    </CreateRecipeContainer>
 );
 
 export default CreateRecipePage;

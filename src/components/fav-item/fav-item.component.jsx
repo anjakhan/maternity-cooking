@@ -3,18 +3,18 @@ import { connect } from 'react-redux';
 
 import { deleteItem } from '../../redux/favorites/fav.actions';
 
-import './fav-item.styles.scss';
+import { FavItemContainer, FavImage, ItemDetailsContainer, TitleContainer, IconContainer } from './fav-item.styles.jsx';
 
 const FavItem = ({ item, deleteItem }) => {
     const { title, picture } = item;
     return (
-        <div className='fav-item'>
-            <img src={picture} alt='item' />
-            <div className='item-details'>
-                <span className='name'>{title}</span>
-                <span onClick={() => deleteItem(item)} className='x-icon'>x</span>
-            </div>
-        </div>
+        <FavItemContainer>
+            <FavImage src={picture} alt='item' />
+            <ItemDetailsContainer>
+                <TitleContainer>{title}</TitleContainer>
+                <IconContainer onClick={() => deleteItem(item)}>x</IconContainer>
+            </ItemDetailsContainer>
+        </FavItemContainer>
     )
 };
 

@@ -15,7 +15,7 @@ const INITIAL_STATE = {
           count: 8
         },
         {
-          topic: 'baby food',
+          topic: 'babys food',
           imageUrl: 'https://mampfbar.de/wp-content/uploads/2017/03/5-beste-gemuesesorten-1150x768.jpg',
           id: 3,
           linkUrl: 'recipes/babyfood',

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ReactComponent as HeartIcon } from '../../assets/heart2a.svg';
 
 const maxWidth = '900px';
 
@@ -38,6 +39,12 @@ export const RecipeContainer = styled.div`
   -moz-box-shadow: 1px 1px 8px rgba(0,0,0,.3);
   -webkit-box-shadow: 1px 1px 8px rgba(0,0,0,.3);
   position: relative;
+
+  @media screen and (max-width: ${maxWidth}) {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
 
 export const TitleContainer = styled.div`
@@ -52,7 +59,7 @@ export const TitleContainer = styled.div`
   }
 `;
 
-export const HeartIconContainer = styled.div`
+export const HeartIconContainer = styled(HeartIcon)`
   margin-left: 20px;
   line-height: 50px;
   width: 40px;
@@ -60,7 +67,7 @@ export const HeartIconContainer = styled.div`
   opacity: 0.7;
   position: absolute;
   top: 20px;
-  right: 25px;
+  right: 30px;
   cursor: pointer;
 
   &:hover {
@@ -87,6 +94,7 @@ export const ImageContainer = styled.div`
   margin-right: 30px;
   border: 2px solid #ccc;
   box-shadow: 3px 3px 5px rgb(33, 33, 33);
+  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 
   @media screen and (max-width: ${maxWidth}) {
     margin: 0;

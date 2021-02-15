@@ -2,34 +2,28 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { ReactComponent as HeartIcon } from '../../assets/heart2a.svg';
 import { deleteItem } from '../../redux/favorites/fav.actions';
 import { addItem } from '../../redux/favorites/fav.actions';
 
-import './preview-item.styles.scss';
+import { PreviewItemContainer, ImageContainer, RecipeTitleContainer, IconContainer, HeartIconContainer } from './preview-item.styles';
 
 const PreviewItem = ({ item, deleteItem, addItem, topic, history }) => {
     const { title, picture } = item;
     return (
-        <div className='preview-item'>
-            <div
-                className='image'
-                style={{
-                    backgroundImage: `url(${picture})`,
-                    cursor: 'pointer'
-                }}
+        <PreviewItemContainer>
+            <ImageContainer
+                imageUrl={picture}
                 onClick={() => history.push(`/recipes/${topic}/${title}`)}
             />
-            <div className='recipe-title'>
+            <RecipeTitleContainer>
                 {title}
                 {
                     topic === 'Favorite Recipes' ?
-                    <div onClick={() => deleteItem(item)} className='x-icon'>x</div> :
-                    <HeartIcon onClick={() => addItem(item)} className='heart-icon' style={{zIndex: "5"}} />
+                    <IconContainer onClick={() => deleteItem(item)}>x</IconContainer> :
+                    <HeartIconContainer onClick={() => addItem(item)} />
                 }
-            </div>
-            
-        </div>
+            </RecipeTitleContainer>            
+        </PreviewItemContainer>
 )};
 
 const mapDispatchToProps = dispatch => ({

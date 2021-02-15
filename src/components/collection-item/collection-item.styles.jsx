@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import CustomButton from '../custom-button/custom-button.component';
 
+import { ReactComponent as HeartIcon } from '../../assets/heart2a.svg';
+
 const maxWidth = '900px';
 
 export const CollectionItemContainer = styled.div`
@@ -33,6 +35,10 @@ export const CollectionItemContainer = styled.div`
       }
     }
   }
+
+  @media screen and (max-width: 550px) {
+    width: 70vw;
+  }
 `;
 
 export const AddButton = styled(CustomButton)`
@@ -62,7 +68,7 @@ export const BackgroundImage = styled.div`
   }
 `;
 
-export const HeartIconContainer = styled.div`
+export const HeartIconContainer = styled(HeartIcon)`
   width: 30px;
   height: 30px;
   opacity: 0.7;

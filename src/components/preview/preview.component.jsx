@@ -2,22 +2,22 @@ import React from 'react';
 
 import PreviewItem from '../preview-item/preview-item.component';
 
-import './preview.styles.scss';
+import { PreviewContainer, TitleContainer, TitleBorder, SelectionContainer } from './preview.styles';
 
 const Preview = ({ items, topic }) => {
     return (
-        <div className='preview'>
-            <h1 className='title'>{topic}<hr /></h1>
+        <PreviewContainer>
+            <TitleContainer>{topic}<TitleBorder /></TitleContainer>
             {items.length ? (
-                <div className='selection'>
+                <SelectionContainer>
                     {items.map(item => (
                         <PreviewItem key={item.id} item={item} topic={topic} />
                     ))}
-                </div>
+                </SelectionContainer>
             ) : (
                 <p>No recipes available</p>
             )}
-        </div>
+        </PreviewContainer>
 )};
 
 export default Preview;
